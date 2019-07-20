@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<div class="container" id="main-content">
+		
+
+		<div class="row mt-4">
+			
+			<th:block th:if="${#lists.isEmpty(persons)}">
+				<h5>No contacts</h5>
+			</th:block>
+
+			<th:block th:unless="${#lists.isEmpty(persons)}">
+				<div class="table-responsive">
+					<h5>List of contacts</h5>
+					<table class="table table-bordered table-hover">
+						<thead>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Age</th>
+							
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="person,iterStat : ${persons}">
+							<th scope="row" th:text="${iterStat.count}"></th>
+							<td th:text="${person.name}"></td>
+							<td th:text="${person.email}"></td>
+							<td th:if="${person.age > 0}" th:text="${person.age}"></td>
+						
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</th:block>
+		</div>
+	</div><!-- /.container -->
+
+
+</body>
+</html>
